@@ -19,6 +19,6 @@ server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
 
 
-const port = 3500;
+const port = process.env.port||5000;
 
 server.listen(port, () => { console.log("Server listening on port " + port) });

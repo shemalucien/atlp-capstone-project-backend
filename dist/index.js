@@ -24,7 +24,7 @@ server.use(_express.default.json());
 server.use('/api/v1/queries', _query.default);
 server.use('/api/v1/auth', _auth.default);
 server.use('/api/v1/blogs', _blog.default);
-const port = 3500;
+const port = process.env.port || 5000;
 server.listen(port, () => {
   console.log("Server listening on port " + port);
 });
