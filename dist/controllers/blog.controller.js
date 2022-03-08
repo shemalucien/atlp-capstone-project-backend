@@ -7,9 +7,21 @@ exports.updateBlog = exports.saveBlog = exports.getById = exports.getAllBlogs = 
 
 var _blog = _interopRequireDefault(require("../database/model/blog.model"));
 
+var _validation_schema = require("../helpers/validation_schema");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const saveBlog = async (req, res) => {
+  const {
+    error
+  } = (0, _validation_schema.blogValidation)(req.body);
+
+  if (error) {
+    return res.status(400).json({
+      message: error.details[0].message
+    });
+  }
+
   const blog = req.body;
   const newBlog = new _blog.default(blog);
   await newBlog.save();
