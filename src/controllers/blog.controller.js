@@ -1,6 +1,11 @@
 import Blog from '../database/model/blog.model';
+import { blogValidation } from '../helpers/validation_schema';
 
 export const saveBlog = async (req, res) => {
+    const {error}=blogValidation(req.body);
+    if(error){
+        return res.status(400).json({message: error.details[0].message})
+    }
     const blog = req.body;
     const newBlog = new Blog(blog);
 
