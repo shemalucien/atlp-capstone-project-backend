@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _joi = require("joi");
+
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -15,6 +17,10 @@ const UserSchema = _mongoose.default.Schema({
     require: true
   },
   lastName: {
+    type: String,
+    require: true
+  },
+  role: {
     type: String,
     require: true
   },

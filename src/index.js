@@ -4,6 +4,7 @@ import queryRoutes from './routes/query.route';
 import authRoutes from './routes/auth.route';
 import blogRoutes from './routes/blog.route';
 
+
 const server = express();
 // default route
 server.get('/', (req, res) => {
@@ -17,7 +18,7 @@ server.use(express.json());
 server.use('/api/v1/queries', queryRoutes);
 server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
-
+server.use('/api/v1/subscribers',)
 
 const port = process.env.port||5000;
 

@@ -11,30 +11,35 @@ var _hashPassword = require("../helpers/hash-password");
 
 var _jwt = require("../helpers/jwt");
 
+var _validation_schema = require("../helpers/validation_schema");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const { authSchema } = require('../helpers/validation_schema');
 const signup = async (req, res) => {
-  let user = req.body; // const result = await authSchema.validateAsync(req.body)
-
+  let user = req.body;
   user.password = await (0, _hashPassword.hash)(user.password);
-  const oldUser = await _user.default.findOne(_user.default.email);
+  const {
+    oldUser
+  } = await _user.default.findOne(_user.default.email);
+  const {
+    error
+  } = (0, _validation_schema.registerValidation)(req.body);
 
-  if (oldUser) {
+  if (error) {
+    return res.status(400).json({
+      message: error.details[0].message
+    });
+  } else if (oldUser) {
     return res.status(409).send("User Already Exist. Please Login");
+  } else {
+    const newUser = await new _user.default(user);
+    newUser.save();
+    res.status(201).json({
+      success: true,
+      message: 'User created',
+      data: newUser.email
+    });
   }
-
-  if (!result) {
-    return res.status(409).send("Invalid email");
-  }
-
-  const newUser = await new _user.default(user);
-  newUser.save();
-  res.status(201).json({
-    success: true,
-    message: 'User created',
-    data: newUser
-  });
 };
 
 exports.signup = signup;
@@ -42,14 +47,14 @@ exports.signup = signup;
 const login = async (req, res) => {
   const {
     password,
-    email
-  } = req.body; // Validate if user exist in our database
-
+    email,
+    role
+  } = req.body;
   let user = await _user.default.findOne({
     email
-  }); // Validate user input
+  });
 
-  if (!(email && password)) {
+  if (!(email && password && role)) {
     res.status(400).send("All input is required");
   }
 
