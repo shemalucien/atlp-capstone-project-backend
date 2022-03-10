@@ -1,6 +1,7 @@
+import { string } from 'joi';
 import mongoose from 'mongoose';
-
 const UserSchema = mongoose.Schema({
+
     firstName: {
         type: String,
         require: true
@@ -8,6 +9,11 @@ const UserSchema = mongoose.Schema({
     lastName: {
         type: String,
         require: true
+    },
+    role: {
+        type: String,
+        require: true,
+        default:"normaluser"
     },
     email: {
         type: String,

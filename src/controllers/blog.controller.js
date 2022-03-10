@@ -1,6 +1,11 @@
 import Blog from '../database/model/blog.model';
-
+import { blogValidation } from '../helpers/validation_schema';
+import { upload } from '../middleware/upload';
 export const saveBlog = async (req, res) => {
+    const {error}=blogValidation(req.body);
+    if(error){
+        return res.status(400).json({message: error.details[0].message})
+    }
     const blog = req.body;
     const newBlog = new Blog(blog);
 
@@ -35,4 +40,10 @@ export const deleteBlogById = async (req, res) => {
     if (!blog) return res.status(404).json({ success: false, message: "Blog not found" });
     await Blog.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Blog deleted", data: blog });
+}
+export const saveImage=async(req,res)=>{
+    upload.single("file") 
+        if (req.file === undefined) return res.send("you must select a file.");
+        const imgUrl = `http://localhost:5000/file/${req.file.filename}`;
+        return res.send(imgUrl);
 }

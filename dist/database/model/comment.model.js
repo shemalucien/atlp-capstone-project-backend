@@ -5,36 +5,30 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _joi = require("joi");
-
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const UserSchema = _mongoose.default.Schema({
-  firstName: {
+const CommentSchema = new _mongoose.default.Schema({
+  name: {
     type: String,
-    require: true
-  },
-  lastName: {
-    type: String,
-    require: true
-  },
-  role: {
-    type: String,
-    require: true
+    required: true
   },
   email: {
     type: String,
     required: true
   },
-  password: {
+  comment: {
     type: String,
     required: true
+  },
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
 });
 
-const User = _mongoose.default.model('User', UserSchema);
+const Comment = _mongoose.default.model('Comment', CommentSchema);
 
-var _default = User;
+var _default = Comment;
 exports.default = _default;
