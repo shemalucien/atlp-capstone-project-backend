@@ -1,5 +1,6 @@
 import Comment from "../database/model/comment.model";
- import { commentsValidation} from '../helpers/validation_schema';
+import Blog from "../database/model/blog.model";
+import { commentsValidation } from '../helpers/validation_schema';
 
 export const saveComment = async (req, res) => {
     const { error } = commentsValidation(req.body);
@@ -20,9 +21,18 @@ export const getAllComments = async (req, res) => {
 
 
 export const deleteCommentById = async (req, res) => {
-    const { id } = req.params;
+    const { } = req.params;
     const comment = await Comment.findById(id);
     if (!comment) return res.status(404).json({ success: false, message: "Comment not found" });
     await Comment.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Comment deleted", data: null });
 }
+export const deleteAllComments = async (req, res) => {
+
+    const title=await Blog.findOne(Blog.title);
+    const comment = await Comment.deleteMany({'title':title});
+    if (!comment) return res.status(404).json({ success: false, message: "Comments not found" });
+ 
+    res.status(200).json({ success: true, message: "Comments deleted", data: null });
+}
+
