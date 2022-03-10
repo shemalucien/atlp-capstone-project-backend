@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect("mongodb://localhost:27017/PortfolioDb", {
+mongoose.connect("mongodb+srv://shemalucien:Shema123@articles.2pt7v.mongodb.net/PortfolioDb", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

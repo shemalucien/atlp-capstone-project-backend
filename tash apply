@@ -1,0 +1,25 @@
+ dist/controllers/auth.controller.js        | 51 [32m++++++++++[m[31m--------[m
+ dist/controllers/blog.controller.js        | 12 [32m+++++[m
+ dist/controllers/comment.controller.js     | 63 [32m++++++++++++++++++++++[m
+ dist/controllers/query.controller.js       | 14 [32m++++[m[31m-[m
+ dist/controllers/subscribers.controller.js | 63 [32m++++++++++++++++++++++[m
+ dist/database/index.js                     |  2 [32m+[m[31m-[m
+ dist/database/model/comment.model.js       | 34 [32m++++++++++++[m
+ dist/database/model/subscriber.model.js    | 22 [32m++++++++[m
+ dist/database/model/user.model.js          |  6 [32m+++[m
+ dist/helpers/admin.js                      | 26 [32m+++++++++[m
+ dist/helpers/validation_schema.js          | 87 [32m+++++++++++++++++++++++[m[31m-------[m
+ dist/index.js                              |  6 [32m+++[m
+ dist/routes/comment.route.js               | 20 [32m+++++++[m
+ dist/routes/subscriber.route.js            | 20 [32m+++++++[m
+ src/controllers/comment.controller.js      | 28 [32m++++++++++[m
+ src/controllers/subscribers.controller.js  | 27 [32m++++++++++[m
+ src/database/index.js                      |  2 [32m+[m[31m-[m
+ src/database/model/comment.model.js        | 23 [32m++++++++[m
+ src/database/model/subscriber.model.js     | 13 [32m+++++[m
+ src/helpers/validation_schema.js           | 18 [32m+++++++[m
+ src/index.js                               |  7 [32m++[m[31m-[m
+ src/routes/auth.route.js                   |  3 [32m+[m[31m-[m
+ src/routes/comment.route.js                | 11 [32m++++[m
+ src/routes/subscriber.route.js             |  8 [32m+++[m
+ 24 files changed, 517 insertions(+), 49 deletions(-)
