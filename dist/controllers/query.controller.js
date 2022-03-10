@@ -7,11 +7,23 @@ exports.updateQuery = exports.saveQuery = exports.getById = exports.getAllQuerie
 
 var _query = _interopRequireDefault(require("../database/model/query.model"));
 
+var _validation_schema = require("../helpers/validation_schema");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const saveQuery = async (req, res) => {
+  const {
+    error
+  } = (0, _validation_schema.queryValidation)(req.body);
+
+  if (error) {
+    return res.status(400).json({
+      message: error.details[0].message
+    });
+  }
+
   const query = req.body;
-  const newQuery = new query();
+  const newQuery = new _query.default(query);
   await newQuery.save();
   res.status(201).json({
     success: true,

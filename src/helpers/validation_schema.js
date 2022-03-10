@@ -30,3 +30,21 @@ export const queryValidation = (query) => {
     });
   return schema.validate(query);
 }
+
+export const commentsValidation = (comment) => {
+  const schema = Joi.object({
+    name: Joi.string().min(6).required(),
+    comment: Joi.string().min(6).required(),
+    email: Joi.string().min(6).required().email(),
+  });
+
+  return schema.validate(comment);
+};
+
+export const subscribersValidation = (subscriber) => {
+  const schema = Joi.object({
+    email: Joi.string().min(6).required().email(),
+  });
+
+  return schema.validate(subscriber);
+}
