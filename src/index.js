@@ -1,5 +1,6 @@
 import "./database";
 import express from 'express';
+
 import queryRoutes from './routes/query.route';
 import authRoutes from './routes/auth.route';
 import blogRoutes from './routes/blog.route';
@@ -21,6 +22,9 @@ server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
 server.use('/api/v1/subscribers',)
 server.use('/api/v1/comments', commentRoutes);
+server.use('/api/v1/subscribers', subscribeRoutes)
+server.use('/file/',blogRoutes);
+
 server.use('/api/v1/subscribers', subscribeRoutes);
 
 const port = process.env.port || 5000;
