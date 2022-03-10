@@ -1,14 +1,25 @@
 import Blog from '../database/model/blog.model';
 import { blogValidation } from '../helpers/validation_schema';
-import { upload } from '../middleware/upload';
+import { fileUpload } from "../helpers/multer";
 export const saveBlog = async (req, res) => {
     const {error}=blogValidation(req.body);
     if(error){
         return res.status(400).json({message: error.details[0].message})
     }
-    const blog = req.body;
-    const newBlog = new Blog(blog);
+    if (req.file) {
+		req.body.photo = await fileUpload(req);
+	} else {
+		req.body.photo =
+			"https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+	}
+    const blog = {
+		title: req.body.title,
+		desc: req.body.desc,
+        photo:req.body.photo,
+        author: req.body.author,
+	};
 
+    const newBlog = new Blog(blog);
     await newBlog.save();
     res.status(201).json({ success: true, data: newBlog });
 }
@@ -41,9 +52,4 @@ export const deleteBlogById = async (req, res) => {
     await Blog.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Blog deleted", data: blog });
 }
-export const saveImage=async(req,res)=>{
-    upload.single("file") 
-        if (req.file === undefined) return res.send("you must select a file.");
-        const imgUrl = `http://localhost:5000/file/${req.file.filename}`;
-        return res.send(imgUrl);
-}
+

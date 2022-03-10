@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-
-mongoose.connect("mongodb+srv://shemalucien:Shema123@articles.2pt7v.mongodb.net/PortfolioDb", {
+import "dotenv/config";
+mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

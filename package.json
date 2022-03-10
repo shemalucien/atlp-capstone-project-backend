@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "argon2": "^0.28.5",
+    "cloudinary": "^1.28.1",
+    "cloudinary-multer": "^1.0.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "gridfs-stream": "^1.1.1",

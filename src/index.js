@@ -20,13 +20,9 @@ server.use(express.json());
 server.use('/api/v1/queries', queryRoutes);
 server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
-server.use('/api/v1/subscribers',)
 server.use('/api/v1/comments', commentRoutes);
-server.use('/api/v1/subscribers', subscribeRoutes)
-server.use('/file/',blogRoutes);
-
 server.use('/api/v1/subscribers', subscribeRoutes);
 
-const port = process.env.port || 5000;
+const port = process.env.port;
 
 server.listen(port, () => { console.log("Server listening on port " + port) });

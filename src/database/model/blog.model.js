@@ -18,10 +18,6 @@ const BlogSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  categories: {
-    type: Array,
-    required: false,
-  },
   createdAt: {
     type: Date,
     default: new Date()
