@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "start": "babel-node src/index.js"
+    "start": "babel-node src/index.js",
+    "babel-version": "babel --version"
   },
   "author": "",
   "license": "ISC",
