@@ -1,6 +1,15 @@
 import mongoose from 'mongoose';
 import "dotenv/config";
-mongoose.connect(process.env.DB, {
+
+const enviroment = process.env.NODE_ENV;
+// database url according to environment 
+// const dev_db_url = process.env.DEVELOPMENT_DB;
+// const prod_db_url = process.env.PRODUCTION_DB;
+// const test_db_url = process.env.TEST_DB;
+
+// const connectionUrl = (enviroment == 'dev') ? dev_db_url : (enviroment == 'prod') ? prod_db_url : test_db_url;
+
+mongoose.connect("mongodb+srv://shemalucien:Shema123@articles.2pt7v.mongodb.net/PortfolioDb", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
