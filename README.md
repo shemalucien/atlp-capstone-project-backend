@@ -16,14 +16,14 @@ To get started with service. Make sure the bellow tools are installed on your de
 
 - install modules you can use either `yarn` or `npm`
 ```sh
-$ yarn install
+ yarn install
 or
-$ npm install
+npm install
 ```
 
 ### starting the dev server
 ```
-$ yarn run build && nodemon dist/index.js
+ yarn run build && nodemon dist/index.js
 or
-$ npm run build && nodemon dist/index.js
+ npm run build && nodemon dist/index.js
 ```
