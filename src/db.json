@@ -191,13 +191,12 @@
                                 },
                                 "message": {
                                     "type": "string"
-                                },
-                                "required": [
-                                    "name",
-                                    "email",
-                                    "message"
+                                }
+                            },
+                                "required": ["name","email", "message"
                                 ]
-                            }
+                               
+                            
                         }
                     }
                 ],
