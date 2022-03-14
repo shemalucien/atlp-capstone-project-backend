@@ -114,7 +114,7 @@ describe('GET API /api/v1/auth/user-profile', () => {
             })
     });
     it('Should return 401 when user is not authorized', (done) => {
-        const user = { email: user.email, password: user.password }
+        const oldUser = { email: user.email, password: user.password }
         chai.request(app).post('/api/v1/auth/user-profile')
             .send(user)
             .end((err, res) => {
