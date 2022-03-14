@@ -55,7 +55,12 @@ export const updateBlog = async (req, res) => {
             "https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
     }
 
-    let updatedBlog = await Blog.findByIdAndUpdate(id, updates, { new: true });
+    let updatedBlog = await Blog.findByIdAndUpdate({ id: req.body.id });
+
+    updatedBlog.title = req.body.title;
+    updatedBlog.desc = req.body.desc;
+    updatedBlog.photo = req.body.photo;
+    updatedBlog.author; req.body.author;
     await updatedBlog.save();
     res.status(200).json({ success: true, message: "Blog updated successfully" })
     res.status(201).json({ success: true, data: updatedBlog });
