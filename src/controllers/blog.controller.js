@@ -37,34 +37,13 @@ export const getById = async (req, res) => {
 }
 
 export const updateBlog = async (req, res) => {
+   
     const { id } = req.params;
-
-    let updates = {
-        title: req.body.title,
-        desc: req.body.desc,
-        photo: req.body.photo,
-        author: req.body.author,
-    };
+    const updates = req.body;
     const blog = await Blog.findById(id);
     if (!blog) return res.status(404).json({ success: false, message: "Blog not found" });
-
-    if (req.file) {
-        req.body.photo = await fileUpload(req);
-    } else {
-        req.body.photo =
-            "https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-    }
-
-    let updatedBlog = await Blog.findByIdAndUpdate({ id: req.body.id });
-
-    updatedBlog.title = req.body.title;
-    updatedBlog.desc = req.body.desc;
-    updatedBlog.photo = req.body.photo;
-    updatedBlog.author; req.body.author;
-    await updatedBlog.save();
+    await Blog.findByIdAndUpdate(id, updates);
     res.status(200).json({ success: true, message: "Blog updated successfully" })
-    res.status(201).json({ success: true, data: updatedBlog });
-
 }
 
 export const deleteBlogById = async (req, res) => {
