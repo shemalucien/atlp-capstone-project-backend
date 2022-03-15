@@ -2,9 +2,6 @@ import app from '../../app';
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import mongoose from 'mongoose';
-
-
-
 chai.use(chaiHttp);
 
 describe('POST API /api/v1/auth/signup', () => {

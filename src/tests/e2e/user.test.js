@@ -42,7 +42,7 @@ describe('POST API /api/v1/auth/signup', () => {
 
 })
 
-describe('POST API /api/v1/authentication/login', () => {
+describe('POST API /api/v1/auth/login', () => {
     before(() => {
         mongoose.connection.dropCollection('login');
     })
