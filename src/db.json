@@ -193,10 +193,11 @@
                                     "type": "string"
                                 }
                             },
-                                "required": ["name","email", "message"
-                                ]
-                               
-                            
+                            "required": [
+                                "name",
+                                "email",
+                                "message"
+                            ]
                         }
                     }
                 ],
@@ -475,6 +476,67 @@
                 "responses": {
                     "201": {
                         "description": "Blog Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/subscribers/subscribe": {
+            "post": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "User can subscribe to get newsletter",
+                "description": "User Subscription",
+                "operationId": "User Subscription",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Subscription sent Successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/subscribers/unsubscribe/{emai}": {
+            "delete": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "User can unSubscribe",
+                "description": "User unSubscription",
+                "operationId": "User unSubscription",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "type": "string",
+                        "description": "email",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Subscription Removed Successfully"
                     }
                 }
             }
