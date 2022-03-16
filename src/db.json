@@ -514,7 +514,7 @@
                 }
             }
         },
-        "/api/v1/subscribers/unsubscribe/{emai}": {
+        "/api/v1/subscribers/unsubscribe": {
             "delete": {
                 "tags": [
                     "Subscribers"
@@ -522,16 +522,23 @@
                 "summary": "User can unSubscribe",
                 "description": "User unSubscription",
                 "operationId": "User unSubscription",
-                "produces": [
-                    "application/json"
-                ],
                 "parameters": [
                     {
-                        "name": "email",
-                        "in": "path",
-                        "type": "string",
-                        "description": "email",
-                        "required": true
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email"
+                            ]
+                        }
                     }
                 ],
                 "responses": {
@@ -539,6 +546,25 @@
                         "description": "Subscription Removed Successfully"
                     }
                 }
+            }
+        },
+        "/api/v1/subscribers/": {
+            "get": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Get all subscribed users  to get newsletter",
+                "description": "List of Subscribers",
+                "operationId": "List of Subscribers",
+                "responses": {
+                    "201": {
+                    }
+                },
+                "security": [
+					{
+						"Bearer": []
+					}
+				]
             }
         }
     }
