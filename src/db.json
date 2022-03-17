@@ -119,50 +119,20 @@
                 "tags": [
                     "Authentication"
                 ],
-                "summary": "Get user Profile for Standard-user | Admin",
-                "description": "User Profile for user's either admin or standard-user",
-                "operationId": "userRegister",
-                "parameters": [
+                "summary": "Fetct User profile",
+                "description": "Fetch User Profile",
+                "operationId": "Fetch User Profile",
+                "security": [
                     {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Resource payload",
-                        "required": true,
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "firstName": {
-                                    "type": "string"
-                                },
-                                "lastName": {
-                                    "type": "string"
-                                },
-                                "email": {
-                                    "type": "string"
-                                },
-                                "role": {
-                                    "type": "string"
-                                },
-                                "password": {
-                                    "type": "string"
-                                },
-                                "token": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "firstName",
-                                "lastname",
-                                "email",
-                                "password",
-                                "token"
-                            ]
-                        }
+                        "Bearer": []
                     }
+                ],
+                "produces": [
+                    "application/json"
                 ],
                 "responses": {
                     "201": {
-                        "description": "Logged in Successfully"
+                        "description": "User Fetched Successfully"
                     }
                 }
             }
@@ -545,7 +515,12 @@
                     "201": {
                         "description": "Subscription Removed Successfully"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/subscribers/": {
@@ -557,14 +532,13 @@
                 "description": "List of Subscribers",
                 "operationId": "List of Subscribers",
                 "responses": {
-                    "201": {
-                    }
+                    "201": {}
                 },
                 "security": [
-					{
-						"Bearer": []
-					}
-				]
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         }
     }
