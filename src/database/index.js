@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import "dotenv/config";
 const enviroment = process.env.NODE_ENV;
-// database url according to environment 
 const dev_db_url = process.env.DEVELOPMENT_DB;
 const prod_db_url = process.env.PRODUCTION_DB;
 const test_db_url = process.env.TEST_DB;
