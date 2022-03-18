@@ -14,7 +14,8 @@ import subscribeRoutes from './routes/subscriber.route';
 
 const server = express();
 
-
+server.use(cors());
+server.use(morgan("dev"));
 
 // default route
 server.get('/', (req, res) => {
@@ -27,14 +28,7 @@ server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
 server.use('/api/v1/comments', commentRoutes);
 server.use('/api/v1/subscribers', subscribeRoutes);
-
-
-
-export default server;
-
-server.use(cors());
-server.use(morgan("dev"));
-server.use("/api/v1/", authRoutes);
+server.use("/api/v1/", authRoutes, queryRoutes, blogRoutes, commentRoutes, subscribeRoutes);
 server.use(
 	"/api-docs",
 	swaggerUi.serve,
@@ -46,3 +40,4 @@ server.use("*", (req, res, next) => {
 		error: "NOT FOUND",
 	});
 });
+export default server;
