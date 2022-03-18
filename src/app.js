@@ -9,7 +9,7 @@ import subscribeRoutes from './routes/subscriber.route';
 const server = express();
 server.use(
 	cors({
-		origin: "http://127.0.0.1:5500",
+		origin: "http://127.0.0.1:5501",
 	}),
 );
 // default route
