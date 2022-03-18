@@ -7,17 +7,12 @@ import blogRoutes from './routes/blog.route';
 import commentRoutes from './routes/comment.route';
 import subscribeRoutes from './routes/subscriber.route';
 const server = express();
-server.use(
-	cors({
-		origin: "http://127.0.0.1:5501",
-	}),
-);
+server.use(cors());
 // default route
 server.get('/', (req, res) => {
 	res.status(200).json({ success: true, message: "You successfully landed on My Portfolio API" })
 });
 server.use(express.json());
-server.use(cors());
 server.use('/api/v1/queries', queryRoutes);
 server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
