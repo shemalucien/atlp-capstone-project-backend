@@ -1,3 +1,4 @@
+import { use } from 'chai';
 import User from '../database/model/user.model';
 import { hash, verify } from '../helpers/hash-password';
 import { decodeToken, signToken } from '../helpers/jwt';
@@ -10,8 +11,8 @@ export const signup = async (req, res) => {
 
     const { error } = registerValidation(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message })
-    
-    let oldUser  = await User.findOne({ email: req.body.email });
+
+    let oldUser = await User.findOne({ email: req.body.email });
     if (oldUser) {
         return res.status(400).json({ error: true, message: "You have already registered please Login" });
     }
@@ -47,21 +48,41 @@ export const userProfile = (req, res) => {
     }
 }
 
-
-export const updateUserProfile = (req, res) => {
+export const getAllUsers = async (req, res) => {
+    const users = await User.find();
+    res.status(200).json({ success: true, data: users })
+}
+export const updateUserProfile = async (req, res) => {
+    const user = await User.findOneAndUpdate({ email: req.body.email })
+    if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.password = req.body.password;
+    user.email = req.body.email;
+    user.save();
+    res.status(200).json({ status: 200, message: "User Profile Updated Successfully", data: user });
+}
+export const changePassword = async (req, res) => {
+    const user = await User.findOneAndUpdate({ email: req.body.email })
+    if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
+    user.password = req.body.password;
+    user.save();
+    res.status(200).json({ status: 200, message: "User Password Updated Successfully", data: user });
 
 }
-export const changePassword = (req, res) => {
-
+export const deleteUser = async (req, res) => {
+    const user = await User.findOne({ email: req.body.email })
+    if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
+    await User.findOneAndDelete(user)
+    res.status(200).json({ success: true, message: "User deleted", data: null });
 }
-export const deleteUser = (req, res) => {
+export const logout = async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+    const bearerToken = req.headers.authorization;
 
-}
-
-export const getAllUsers = (req, res) => {
-
-}
-export const logout = (req, res, next) => {
-
-
+    if (bearerToken) {
+        return res.status(400).json({ error: true, message: "You have already logged out" });
+    }
+    await User.findOneAndDelete(bearerToken);
+    res.status(200).json({ success: true, message: "User Logged out Successfully", data: null });
 }
