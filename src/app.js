@@ -7,7 +7,11 @@ import blogRoutes from './routes/blog.route';
 import commentRoutes from './routes/comment.route';
 import subscribeRoutes from './routes/subscriber.route';
 const server = express();
+
+
+
 server.use(cors());
+
 // default route
 server.get('/', (req, res) => {
 	res.status(200).json({ success: true, message: "You successfully landed on My Portfolio API" })

@@ -37,6 +37,7 @@ export const getById = async (req, res) => {
 }
 
 export const updateBlog = async (req, res) => {
+   
     const { id } = req.params;
     const updates = req.body;
     const blog = await Blog.findById(id);
