@@ -57,7 +57,7 @@ describe('POST API /api/v1/auth/login', () => {
             .send(user)
             .end((err, res) => {
                 if (err) return done(err)
-                token = res.body.token;
+                token = res.body.token
                 expect(res.status).to.be.equal(200);
                 expect(res.body).to.have.property("token");
                 return done();
