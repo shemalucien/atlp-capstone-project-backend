@@ -36,7 +36,6 @@ export const commentsValidation = (comment) => {
     name: Joi.string().min(6).required(),
     comment: Joi.string().min(6).required(),
     email: Joi.string().min(6).required().email(),
-    blog: Joi.string().required(),
   });
 
   return schema.validate(comment);
