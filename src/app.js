@@ -29,15 +29,8 @@ server.use('/api/v1/blogs', blogRoutes);
 server.use('/api/v1/comments', commentRoutes);
 server.use('/api/v1/subscribers', subscribeRoutes);
 server.use("/api/v1/", authRoutes, queryRoutes, blogRoutes, commentRoutes, subscribeRoutes);
-server.use(
-	"/api-docs",
-	swaggerUi.serve,
-	swaggerUi.setup(swaggerDoc, { explorer: true })
-);
-
+server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
 server.use("*", (req, res, next) => {
-	res.status(404).json({
-		error: "NOT FOUND",
-	});
+	res.status(404).json({ error: "NOT FOUND", });
 });
 export default server;
