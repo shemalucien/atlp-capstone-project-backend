@@ -10,8 +10,8 @@ export const signup = async (req, res) => {
 
     const { error } = registerValidation(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message })
-    
-    let oldUser  = await User.findOne({ email: req.body.email });
+
+    let oldUser = await User.findOne({ email: req.body.email });
     if (oldUser) {
         return res.status(400).json({ error: true, message: "You have already registered please Login" });
     }
@@ -31,8 +31,15 @@ export const login = async (req, res) => {
     if (!isPasswordValid) return res.status(401).json({ success: false, message: "Invalid email or password" });
 
     const { _id, firstName, lastName, role } = user;
+    let userdata = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+
+    }
     const token = signToken(JSON.stringify({ _id, firstName, lastName, role, email: user.email }));
-    return res.status(200).json({ success: true, message: "successfully logged in", token })
+    return res.status(200).json({ success: true, message: "successfully logged in", data: userdata, token })
 }
 
 export const userProfile = (req, res) => {
