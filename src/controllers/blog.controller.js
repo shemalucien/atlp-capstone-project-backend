@@ -37,7 +37,7 @@ export const getById = async (req, res) => {
 }
 
 export const updateBlog = async (req, res) => {
-   
+
     const { id } = req.params;
     const updates = req.body;
     const blog = await Blog.findById(id);
@@ -54,3 +54,31 @@ export const deleteBlogById = async (req, res) => {
     res.status(200).json({ success: true, message: "Blog deleted", data: blog });
 }
 
+export const commentonBlog = async (req, res) => {
+    const id = (req.params.id)
+    const comment = req.body;
+    const blog = await Blog.findById(id);
+    if (!blog) return res.status(404).json({ status: "fail", message: "blog not found" });
+    blog.comments.push(comment);
+    console.log(blog);
+    await Blog.findByIdAndUpdate(id, comment);
+    blog.save();
+    res.status(201).json({ status: "success", message: "comment added" });
+}
+export const getAllComment = async (req, res) => {
+    const id = (req.params.id)
+    const blog = await Blog.findById(id);
+    const comments = blog.comments;
+    res.status(200).json({ status: "success", data: comments })
+}
+
+export const deleteComment = async (req, res) => {
+    const id = (req.params.id)
+    const commentId = req.params.commentId
+    const blog = await Blog.findById(id);
+    console.log(blog);
+    const comments = blog.comment.filter(c => c.id !== commentId);
+    blog.comment = comments
+    blog.save()
+    res.status(200).json({ status: "success", data: blog });
+}
