@@ -8,7 +8,6 @@ import cors from "cors";
 import queryRoutes from './routes/query.route';
 import authRoutes from './routes/auth.route';
 import blogRoutes from './routes/blog.route';
-import commentRoutes from './routes/comment.route';
 import subscribeRoutes from './routes/subscriber.route';
 const server = express();
 server.use(morgan("dev"));
@@ -31,9 +30,9 @@ server.use(express.json());
 server.use('/api/v1/queries', queryRoutes);
 server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
-server.use('/api/v1/comments', commentRoutes);
+
 server.use('/api/v1/subscribers', subscribeRoutes);
-server.use("/api/v1/", authRoutes, queryRoutes, blogRoutes, commentRoutes, subscribeRoutes);
+server.use("/api/v1/", authRoutes, queryRoutes, blogRoutes, subscribeRoutes);
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
 server.use("*", (req, res, next) => {
 	res.status(404).json({ error: "NOT FOUND", });
