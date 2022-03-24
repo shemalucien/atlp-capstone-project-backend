@@ -8,4 +8,5 @@ router.get('/:id', checkAdminAuth, getById);
 router.put('/:id', checkAdminAuth, updateQuery);
 router.delete('/:id', checkAdminAuth, deleteQueryById);
 
+
 export default router;
