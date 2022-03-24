@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from "multer";
-import { deleteBlogById, getAllBlogs, getById, saveBlog, updateBlog } from '../controllers/blog.controller';
+import { deleteBlogById, getAllBlogs, getById, saveBlog, updateBlog, commentonBlog, getAllComment } from '../controllers/blog.controller';
 import { checkAdminAuth } from '../middleware/check-users';
 const router = express.Router();
 const storage = multer.diskStorage({});
@@ -15,8 +15,10 @@ const uploads = multer({ storage, fileFilter });
 
 router.post('/', checkAdminAuth, uploads.single("photo"), saveBlog);
 router.get('/', getAllBlogs);
-router.get('/:id',checkAdminAuth,getById);
+router.get('/:id', getById);
 router.delete('/:id', checkAdminAuth, deleteBlogById);
 router.put('/:id', checkAdminAuth, updateBlog);
+router.put('/:id/comment', commentonBlog);
+router.get('/:id/comments', getAllComment)
 
 export default router;

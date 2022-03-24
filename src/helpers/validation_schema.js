@@ -17,6 +17,7 @@ export const blogValidation = (blog) => {
     desc: Joi.string().min(6).required(),
     photo: Joi.string().min(3),
     author: Joi.string().min(6).required(),
+
   });
   return schema.validate(blog);
 }
@@ -31,16 +32,15 @@ export const queryValidation = (query) => {
   return schema.validate(query);
 }
 
-export const commentsValidation = (comment) => {
-  const schema = Joi.object({
-    name: Joi.string().min(6).required(),
-    comment: Joi.string().min(6).required(),
-    email: Joi.string().min(6).required().email(),
-    blog: Joi.string().required(),
-  });
+// export const commentsValidation = (comment) => {
+//   const schema = Joi.object({
+//     name: Joi.string().min(6).required(),
+//     comment: Joi.string().min(6).required(),
+//     email: Joi.string().min(6).required().email(),
+//   });
 
-  return schema.validate(comment);
-};
+//   return schema.validate(comment);
+// };
 
 export const subscribersValidation = (subscriber) => {
   const schema = Joi.object({

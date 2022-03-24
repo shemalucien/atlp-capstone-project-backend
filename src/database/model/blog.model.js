@@ -19,15 +19,26 @@ const BlogSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  
+
   createdAt: {
     type: Date,
     default: new Date()
   },
-  comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Comment",
-  },
+  comments: [
+    {
+      name: {
+        type: String,
+        required: false,
+      },
+      email: {
+        type: String,
+        required: false,
+      },
+      comment: {
+        type: String,
+        required: false
+      }
+    }
   ],
 
 }
