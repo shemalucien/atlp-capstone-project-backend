@@ -12,7 +12,7 @@ import commentRoutes from './routes/comment.route';
 import subscribeRoutes from './routes/subscriber.route';
 const server = express();
 server.use(morgan("dev"));
-
+server.use(cors());
 // default route
 server.get('/', (req, res) => {
 	res.status(200).json({ success: true, message: "You successfully landed on My Portfolio API" })
@@ -21,7 +21,7 @@ server.use(express.json());
 
 
 
-server.use(cors());
+
 
 // default route
 server.get('/', (req, res) => {
