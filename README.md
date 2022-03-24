@@ -27,6 +27,4 @@ npm install
 or
  npm run build && nodemon dist/index.js
 ```
- ![CI/CD](https://github.com/shemaulucien/
-atlp-capstone-project-backend/actions/workflows/app.yml
-/badge.svg)
+ [CI/CD](https://github.com/shemaulucien/atlp-capstone-project-backend/actions/workflows/app.yml/badge.svg)
