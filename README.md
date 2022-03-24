@@ -27,4 +27,6 @@ npm install
 or
  npm run build && nodemon dist/index.js
 ```
- https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
+ ![CI/CD](https://github.com/shemaulucien/
+atlp-capstone-project-backend/actions/workflows/app.yml
+/badge.svg)
