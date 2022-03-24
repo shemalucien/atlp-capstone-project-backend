@@ -27,3 +27,4 @@ npm install
 or
  npm run build && nodemon dist/index.js
 ```
+ https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
