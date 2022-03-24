@@ -11,16 +11,16 @@ export const registerValidation = (user) => {
   return schema.validate(user);
 }
 
-// export const blogValidation = (blog) => {
-//   const schema = Joi.object({
-//     title: Joi.string().min(6).required(),
-//     desc: Joi.string().min(6).required(),
-//     photo: Joi.string().min(3),
-//     author: Joi.string().min(6).required(),
+export const blogValidation = (blog) => {
+  const schema = Joi.object({
+    title: Joi.string().min(6).required(),
+    desc: Joi.string().min(6).required(),
+    photo: Joi.string().min(3),
+    author: Joi.string().min(6).required(),
 
-//   });
-//   return schema.validate(blog);
-// }
+  });
+  return schema.validate(blog);
+}
 
 export const queryValidation = (query) => {
   const schema = Joi.object(

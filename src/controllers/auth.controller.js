@@ -78,10 +78,12 @@ export const changePassword = async (req, res) => {
 
 }
 export const deleteUser = async (req, res) => {
-    const user = await User.findOne({ email: req.body.email })
+    const id = req.params._id;
+    const user = await User.findOne({ id })
     if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
     await User.findOneAndDelete(user)
-    res.status(200).json({ success: true, message: "User deleted", data: null });
+    res.status(200).json({ status: "success", message: "User deleted", data: null });
+
 }
 export const logout = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
