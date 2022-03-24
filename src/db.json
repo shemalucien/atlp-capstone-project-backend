@@ -493,7 +493,7 @@
                 }
             }
         },
-        "/api/v1/subscribers/unsubscribe": {
+        "/api/v1/subscribers/unsubscribe/:id": {
             "delete": {
                 "tags": [
                     "Subscribers"
@@ -501,35 +501,28 @@
                 "summary": "User can unSubscribe",
                 "description": "User unSubscription",
                 "operationId": "User unSubscription",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Resource payload",
-                        "required": true,
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "email": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "email"
-                            ]
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Subscription Removed Successfully"
-                    }
-                },
                 "security": [
                     {
                         "Bearer": []
                     }
-                ]
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "sub Id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Subscription deleted Successfully"
+                    }
+                }
             }
         },
         "/api/v1/subscribers/": {
