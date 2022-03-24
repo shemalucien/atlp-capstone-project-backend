@@ -91,12 +91,12 @@ describe('POST API /api/v1/auth/login', () => {
             it('it should get the query using its id and return 200', (done) => {
                 chai.request(app)
                     .post('/api/v1/queries')
-                    .set("Authorization", `Bearer ${token}`)
                     .send(query)
                     .end((err, res) => {
                         if (err) return done(err)
                         queryId = res.body.data._id;
                         chai.request(app).get('/api/v1/queries/' + queryId)
+                            .set("Authorization", `Bearer ${token}`)
                             .end((err, res) => {
                                 if (err) return done(err);
                                 expect(res.status).to.be.equal(200)
@@ -125,6 +125,7 @@ describe('POST API /api/v1/auth/login', () => {
                         queryId = res.body.data._id;
                         chai.request(app)
                             .delete('/api/v1/queries/' + queryId)
+                            .set("Authorization", `Bearer ${token}`)
                             .end((err, res) => {
                                 if (err) return done(err);
                                 expect(res.status).to.be.equal(200)

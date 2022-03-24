@@ -125,7 +125,7 @@ describe('POST API /api/v1/auth/login', () => {
     });
     it('it should return subscription removed successfully 200', (done) => {
         chai.request(app)
-            .delete('/api/v1/subscribers/unsubscribe')
+            .delete('/api/v1/subscribers/unsubscribe/:id')
             .set("Authorization", `Bearer ${token}`)
             .send(subscriber)
             .end((err, res) => {
