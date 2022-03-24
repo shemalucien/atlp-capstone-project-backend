@@ -1,5 +1,4 @@
 import { decodeToken } from "../helpers/jwt";
-
 export const checkAuth = (req, res, next) => {
 	const bearerToken = req.headers.authorization;
 	if (bearerToken) {
