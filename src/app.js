@@ -10,7 +10,7 @@ import authRoutes from './routes/auth.route';
 import blogRoutes from './routes/blog.route';
 import commentRoutes from './routes/comment.route';
 import subscribeRoutes from './routes/subscriber.route';
-
+const server = express();
 server.use(morgan("dev"));
 
 // default route
@@ -19,7 +19,7 @@ server.get('/', (req, res) => {
 });
 server.use(express.json());
 
-const server = express();
+
 
 server.use(cors());
 
