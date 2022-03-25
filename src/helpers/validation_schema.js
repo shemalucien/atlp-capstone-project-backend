@@ -15,7 +15,7 @@ export const blogValidation = (blog) => {
   const schema = Joi.object({
     title: Joi.string().min(6).required(),
     desc: Joi.string().min(6).required(),
-    photo: Joi.string().min(3),
+    // photo: Joi.string().min(3),
     author: Joi.string().min(6).required(),
 
   });
