@@ -146,6 +146,24 @@
                 }
             }
         },
+        "/api/v1/auth/allUsers": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get all  users ",
+                "description": "List of Users",
+                "operationId": "List of Users",
+                "responses": {
+                    "200": {}
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/queries": {
             "post": {
                 "tags": [
