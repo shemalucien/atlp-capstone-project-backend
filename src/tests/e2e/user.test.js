@@ -113,6 +113,32 @@ describe('GET API /api/v1/auth/user-profile', () => {
                     })
             })
     });
+    describe('GET API /api/v1/auth/allUsers', () => {
+        before(() => {
+            mongoose.connection.dropCollection('user-profile');
+        })
+        const user = {
+            email: "shemalucien5@gmail.com",
+            password: "123456"
+        }
+        let token = "";
+        it('should login', (done) => {
+            chai.request(app)
+                .post('/api/v1/auth/login')
+                .send(user)
+                .end((err, res) => {
+                    if (err) return done(err)
+                    token = res.body.token;
+                    chai.request(app).get('/api/v1/auth/allUsers')
+                        .set("Authorization", `Bearer ${token}`)
+                        .end((err, res) => {
+                            if (err) return done(err);
+                            expect(res.status).to.be.eql(200)
+                            return done();
+                        })
+                })
+        });
+      
     it('Should return 401 when user is not authorized', (done) => {
         const oldUser = { email: user.email, password: user.password }
         chai.request(app).post('/api/v1/auth/user-profile')
@@ -125,6 +151,6 @@ describe('GET API /api/v1/auth/user-profile', () => {
 
     });
 });
-
+});
 
 

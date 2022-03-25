@@ -1,16 +1,27 @@
 # atlp-capstone-project-backend
 ## My APIs
 
+## Description
 
-## Getting started
+- My Motivation is to 
+- I built this Project to brand myself
+- During this project I learned to Build a Backend Application
+## Table of Contents 
+-[Gettingstarted](#Getting started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+
+
+## Gettingstarted
 
 To get started with service. Make sure the bellow tools are installed on your development environment
 
 - [X] [Nodejs](https://nodejs.org/en/) installed 
 - [X] [Mongodb](https://www.mongodb.com/) installed 
 - [X] APi testing tool. [Postman](https://www.postman.com/) recommended
-
-## Running the app
+## Installation
 
 - clone the [repo](https://github.com/shemalucien/atlp-capstone-project-backend)
 
@@ -20,11 +31,38 @@ To get started with service. Make sure the bellow tools are installed on your de
 or
 npm install
 ```
+## Usage
 
-### starting the dev server
-```
- yarn run build && nodemon dist/index.js
-or
- npm run build && nodemon dist/index.js
-```
- [CI/CD](https://github.com/shemalucien/atlp-capstone-project-backend/actions/workflows/app.yml/badge.svg)
+Provide instructions and examples for use. Include screenshots as needed.
+
+
+## Credits
+
+-My Credits goes to the Elite's Team TTL 
+-My Credits goes to the Elite's Team Group Members
+
+## License
+
+
+
+## Badges
+
+![CICD](https://github.com/shemalucien/atlp-capstone-project-backend/actions/workflows/app.yml/badge.svg)
+
+
+
+## Features
+1.Sign up and Login 
+2. Dynamic Blog pages.
+3. Have a dedicated editor for blogs.
+4. You can add/make as many blogs you want.
+5. Have read more blogs section also.
+
+## How to Contribute
+
+
+
+## Tests
+ yarn run test
+    or
+ npm run test
