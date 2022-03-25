@@ -214,6 +214,7 @@ describe('POST API /api/v1/auth/login', () => {
                     })
             });
 
+
             it('Should return 404 when blog does not exists', (done) => {
                 const fakeId = '1229b52ca50601182da72457';
                 chai.request(app).get('/api/v1/blogs/' + fakeId)
@@ -223,16 +224,82 @@ describe('POST API /api/v1/auth/login', () => {
                         return done();
                     })
             });
+            describe('Comment API /api/v1/blogs/:id/comment', () => {
+                before(() => {
+                    mongoose.connection.dropCollection('comments');
+                })
+                const comment = {
+                    name: "shemalucien1",
+                    email: "shemalucien5@gmail.com",
+                    comment: "you wrote a good blog"
+
+                }
+                const blog = {
+                    title: "ATLP RWANDA",
+                    desc: "Andela Technical Leadership Program Rwanda",
+                    photo: "Photo url",
+                    author: "Shema Lucien"
+                }
+
+                let blogId;
+                it('Should comment on the blog', (done) => {
+                    chai.request(app)
+                        .post('/api/v1/blogs')
+                        .set("Authorization", `Bearer ${token}`)
+                        .send(blog)
+                        .end((err, res) => {
+                            if (err) return done(err)
+                            blogId = res.body.data._id;
+                            chai.request(app)
+                                .put('/api/v1/blogs/' + blogId + '/comment')
+                                .end((err, res) => {
+                                    if (err) return done(err);
+                                    expect(res.status).to.be.eql(201)
+                                    return done();
+                                })
+                        })
+                });
+                it('Should get all comments on the blog', (done) => {
+                    chai.request(app)
+                        .post('/api/v1/blogs')
+                        .set("Authorization", `Bearer ${token}`)
+                        .send(blog)
+                        .end((err, res) => {
+                            if (err) return done(err)
+                            blogId = res.body.data._id;
+                            chai.request(app)
+                                .get('/api/v1/blogs/' + blogId + '/comments')
+                                .end((err, res) => {
+                                    if (err) return done(err);
+                                    expect(res.status).to.be.eql(200)
+                                    return done();
+                                })
+                        })
+                });
+            })
+        });
+
+        it('Should return 404 when blog does not exists', (done) => {
+            const fakeId = '1229b52ca50601182da72457';
+            chai.request(app).get('/api/v1/blogs/' + fakeId + "/comment")
+                .end((err, res) => {
+                    if (err) return done(err);
+                    expect(res.status).to.be.eql(404)
+                    return done();
+                })
+        });
+    
+
+    })
 
 
-        })
 
-
-
-    });
-
+});
 
 
 
 
-})
+
+
+
+
