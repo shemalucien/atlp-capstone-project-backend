@@ -73,12 +73,12 @@ export const getAllComment = async (req, res) => {
 }
 
 export const deleteComment = async (req, res) => {
-    const id = (req.params.id)
+    const id = req.params.id
     const commentId = req.params.commentId
     const blog = await Blog.findById(id);
     console.log(blog);
-    const comments = blog.comment.filter(c => c.id !== commentId);
-    blog.comment = comments
+    const comments = blog.comments.filter(c => c.id !== commentId);
+    blog.comments = comments
     blog.save()
     res.status(200).json({ status: "success", data: blog });
 }
