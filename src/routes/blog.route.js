@@ -13,7 +13,7 @@ const fileFilter = (req, file, cb) => {
 };
 const uploads = multer({ storage, fileFilter });
 
-router.post('/', checkAdminAuth, uploads.single("photo"), saveBlog);
+router.post('/', uploads.single("photo"), saveBlog);
 router.get('/', getAllBlogs);
 router.get('/:id', getById);
 router.delete('/:id', checkAdminAuth, deleteBlogById);

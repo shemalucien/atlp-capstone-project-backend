@@ -3,7 +3,7 @@ import { deleteQueryById, getAllQueries, getById, saveQuery, updateQuery } from 
 import { checkAdminAuth, checkAuth } from '../middleware/check-users';
 const router = express.Router();
 router.post('/', saveQuery);
-router.get('/', checkAdminAuth, getAllQueries);
+router.get('/', getAllQueries);
 router.get('/:id', checkAdminAuth, getById);
 router.put('/:id', checkAdminAuth, updateQuery);
 router.delete('/:id', checkAdminAuth, deleteQueryById);

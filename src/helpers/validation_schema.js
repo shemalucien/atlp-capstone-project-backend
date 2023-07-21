@@ -2,8 +2,7 @@ import Joi from "joi";
 
 export const registerValidation = (user) => {
   const schema = Joi.object({
-    firstName: Joi.string().min(5).required(),
-    lastName: Joi.string().min(5).required(),
+    name: Joi.string().min(5).required(),
     role: Joi.string().min(5),
     email: Joi.string().min(5).required().email(),
     password: Joi.string().min(5).required(),
@@ -21,6 +20,29 @@ export const blogValidation = (blog) => {
   });
   return schema.validate(blog);
 }
+
+export const projectValidation = (project) => {
+  const schema = Joi.object({
+    title: Joi.string().min(6).required(),
+    subtitle: Joi.string().min(6).required(),
+    description: Joi.string().min(6),
+    image: Joi.string().min(6),
+    link: Joi.string().min(6),
+  });
+  return schema.validate(project);
+}
+
+export const experienceValidation = (experience) => {
+  const schema = Joi.object({
+    title: Joi.string().min(6).required(),
+    subtitle: Joi.string().min(6).required(),
+    description: Joi.string().min(6),
+    image: Joi.string().min(6),
+    link: Joi.string().min(6),
+  });
+  return schema.validate(experience);
+}
+
 
 export const queryValidation = (query) => {
   const schema = Joi.object(

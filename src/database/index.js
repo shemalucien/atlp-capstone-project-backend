@@ -4,7 +4,7 @@ const enviroment = process.env.NODE_ENV;
 const dev_db_url = process.env.DEVELOPMENT_DB;
 const prod_db_url = process.env.PRODUCTION_DB;
 const test_db_url = process.env.TEST_DB;
-
+//"mongodb://localhost:27017/PortfolioDb"
 const connectionUrl = (enviroment=='dev') ? dev_db_url : (enviroment == 'prod') ? prod_db_url : test_db_url;
 console.log("env: "+enviroment+"  ---- url: "+connectionUrl)
 

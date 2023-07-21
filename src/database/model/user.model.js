@@ -1,26 +1,22 @@
 import mongoose from 'mongoose';
+import {isEmail} from 'validator';
 const UserSchema = mongoose.Schema({
 
-    firstName: {
+    name: {
         type: String,
-        require: true
-    },
-    lastName: {
-        type: String,
-        require: true
-    },
-    role: {
-        type: String,
-        require: true,
-        default:"normaluser"
+        required: [true, 'Please enter Name']
     },
     email: {
         type: String,
-        required: true
+        required: [true, 'Please enter Email'],
+        unique: true,
+        lowercase: true,
+        validate: [isEmail,'Please enter a valid email']
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: [6, 'Minimum length of password must be at least 6 characters']
     }
 })
 

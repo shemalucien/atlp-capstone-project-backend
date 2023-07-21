@@ -9,6 +9,8 @@ import queryRoutes from './routes/query.route';
 import authRoutes from './routes/auth.route';
 import blogRoutes from './routes/blog.route';
 import subscribeRoutes from './routes/subscriber.route';
+import projectRoutes from './routes/project.route';
+import experienceRoutes from './routes/experience.route';
 const server = express();
 server.use(morgan("dev"));
 server.use(cors());
@@ -30,6 +32,8 @@ server.use(express.json());
 server.use('/api/v1/queries', queryRoutes);
 server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/blogs', blogRoutes);
+server.use('/api/v1/projects', projectRoutes);
+server.use('/api/v1/experiences', experienceRoutes);
 
 server.use('/api/v1/subscribers', subscribeRoutes);
 server.use("/api/v1/", authRoutes, queryRoutes, blogRoutes, subscribeRoutes);

@@ -6,19 +6,34 @@ import { registerValidation } from '../helpers/validation_schema';
 
 
 export const signup = async (req, res) => {
-    let user = req.body;
-    user.password = await hash(user.password);
+    try {
+        let user = req.body;
+        user.password = await hash(user.password);
 
-    const { error } = registerValidation(req.body);
-    if (error) return res.status(400).json({ message: error.details[0].message })
+        const { error } = registerValidation(req.body);
+        if (error) return res.status(400).json({ message: error.details[0].message })
 
-    let oldUser = await User.findOne({ email: req.body.email });
-    if (oldUser) {
-        return res.status(400).json({ error: true, message: "You have already registered please Login" });
+        let oldUser = await User.findOne({ email: req.body.email });
+        if (oldUser) {
+            return res.status(400).json({ error: true, message: "You have already registered please Login" });
+        }
+        const newUser = await new User(user);
+        const { _id, Name, } = user;
+        let userdata = {
+            name: user.name,
+            email: user.email,
+            password: user.password,
+        }
+        const token = signToken(userdata);
+        newUser.token = token;
+        newUser.save();
+        return res.status(200).json({ success: true, message: "successfully registered", data: userdata, token })
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: " user not created" });
     }
-    const newUser = await new User(user);
-    newUser.save();
-    res.status(201).json({ success: true, message: 'User created', data: newUser.email });
+
 }
 
 export const login = async (req, res) => {
@@ -31,15 +46,13 @@ export const login = async (req, res) => {
     const isPasswordValid = await verify(user.password, password);
     if (!isPasswordValid) return res.status(401).json({ success: false, message: "Invalid email or password" });
 
-    const { _id, firstName, lastName, role } = user;
+    const { _id, Name, } = user;
     let userdata = {
-        firstName: user.firstName,
-        lastName: user.lastName,
+        Name: user.Name,
         email: user.email,
-        role: user.role,
 
     }
-    const token = signToken(JSON.stringify({ _id, firstName, lastName, role, email: user.email }));
+    const token = signToken(JSON.stringify({ _id, Name, email: user.email }));
     return res.status(200).json({ success: true, message: "successfully logged in", data: userdata, token })
 }
 
@@ -59,6 +72,7 @@ export const getAllUsers = async (req, res) => {
     const users = await User.find();
     res.status(200).json({ success: true, data: users })
 }
+
 export const updateUserProfile = async (req, res) => {
     const user = await User.findOneAndUpdate({ email: req.body.email })
     if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
